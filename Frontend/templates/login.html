@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(148, 45, 207); 
+        }
+        .back{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 200px;
+            margin-top: 50px;
+            margin-left: 50px;
+            height: 550px;
+            width: 1250px;
+            background-color: beige;
+            border-radius: 30px;
+        }
+        .left img{
+            margin-left: 50px;
+            height: 550px;
+            width: 500px;
+        }
+       h2{
+        font-size: 30px;
+       }
+        label{
+            font-size: 25px;
+        }
+        .message{
+            color: red;
+        }
+        input{
+            height: 30px;
+            width: 300px;
+            font-size: 20px;
+            border-radius: 10px;
+            border: 1px solid black;
+        }
+        button{
+            height: 30px;
+            width: 300px;
+            background-color: purple;
+            color: white;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+        .all{
+            margin-left: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="back">
+        <div class="left">
+            <img src="{% static 'images/loginleft.webp' %}">
+       </div>
+            <div class="right"><br><br>
+               <h2>Log in</h2>
+               {% if messages %}
+               <div class="guna">
+                {% for message in messages %}
+                <p class="message">{{message}}</p>
+                {% endfor %}
+               </div>
+               {% endif %}
+               <form method="POST">
+                {% csrf_token %} 
+                <label>User Name/Email</label><br>
+                <input type="text" name="username"><br><br>
+                <label>Password</label><br>
+                <input type="password" name="password"><br><br>
+                <a href="">Forgot Password?</a><br><br>
+                <button type="submit">LOG IN</button>
+               </form><br><br><br>
+               <div class="all">
+                <p>Don't have an account?<a href="{% url 'signup' %}">Sign Up</a></p>
+            </div>
+        
+            </div>
+           
+    </div>
+</body>
+</html>
